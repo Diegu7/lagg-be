@@ -14,6 +14,6 @@ api.get('/posts', PostController.getPosts);
 api.get('/posts/:id', PostController.getPost);
 api.post('/posts', PostController.addPost);
 //api.put('/cuentas', CuentaController.updateCuenta);
-//api.delete('/cuentas/:id', CuentaController.deleteCuenta);
+api.delete('/posts/:id', PostController.deletePost);
 
 module.exports = api;

@@ -66,47 +66,30 @@ function addPost(req, res) {
     }
   });
 }
-/*
-function updateCuenta(req, res) {
-  let params = req.body;
 
-  let query = {
-    text: 'Select fn_cuentas_update($1, $2, $3, $4)',
-    values: [params.numero_cuenta, params.apertura, params.saldo, params.antiguedad]
-  };
-
-  let client = new Client({user: 'david', host: 'localhost', database: 'cooperativa', password: 'asd', port: 5432})
-  client.connect();
-  client.query(query, (err, cuentas) => {
-    if (err) {
-      res.status(500).send({error: err.message});
-    } else {
-      res.status(200).send({message: 'Actualizado Exitosamente!'});
-    }
-  });
-}*/
-/*
-function deleteCuenta(req, res) {
+function deletePost(req, res) {
   let params = req.params;
 
   let query = {
-    text: 'Select fn_cuentas_delete($1)',
+    text: 'delete from posts where post_id = $1',
     values: [params.id]
   };
 
-  let client = new Client({user: 'david', host: 'localhost', database: 'cooperativa', password: 'asd', port: 5432})
+  let client = new Client({user: 'postgres', host: 'localhost', database: 'lagg', password: 'hola123', port: 5432});
   client.connect();
-  client.query(query, (err, cuentas) => {
+  client.query(query, (err, post) => {
     if (err) {
+      console.log(err.message);
       res.status(500).send({error: err.message});
     } else {
       res.status(200).send({message: 'Eliminado Exitosamente!'});
     }
   });
-}*/
+}
 
 module.exports = {
   getPosts,
   getPost,
-  addPost
+  addPost,
+  deletePost
 };
